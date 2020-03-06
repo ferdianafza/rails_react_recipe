@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1 do
-      get 'students/index'
-      post 'students/create'
-      get '/show/:id', to: 'students#show'
-      delete '/destroy/:id', to: 'students#destroy'
-    end
-  end
+  # namespace :api do
+  #   namespace :v1 do
+  #   
+  #   end
+  # end
   namespace :api do
     namespace :v1 do
       get 'recipes/index'
       post 'recipes/create'
       get '/show/:id', to: 'recipes#show'
       delete '/destroy/:id', to: 'recipes#destroy'
+
+
+      get 'students/index'
+      post 'students/create'
+      get '/student/show/:id', to: 'students#show'
+      delete '/student/destroy/:id', to: 'students#destroy'
     end
   end
   root 'homepage#index'

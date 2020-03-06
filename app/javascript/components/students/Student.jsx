@@ -17,7 +17,7 @@ componentDidMount() {
       }
     } = this.props;
 
-    const url = `/api/v1/show/${id}`;
+    const url = `/api/v1/student/show/${id}`;
 
     fetch(url)
       .then(response => {
@@ -42,7 +42,7 @@ componentDidMount() {
         params: { id }
        }
      } = this.props;
-     const url = `/api/v1/destroy/${id}`;
+     const url = `/api/v1/student/destroy/${id}`;
      const token = document.querySelector('meta[name="csrf-token"]').content;
 
      fetch(url, {
