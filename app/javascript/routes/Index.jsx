@@ -21,7 +21,7 @@ export default (
 
   	  <Route path="/students" exact component={Students} />
   	  <Route path="/student/:id" exact component={Student} />
-      <Route path="/student/:id/edit" exact component={Student} />
+      <Route path="/student/:id/edit" exact component={EditStudent} />
       <Route path="/student" exact component={NewStudent} />
     </Switch>
   </Router>

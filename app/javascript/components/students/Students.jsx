@@ -38,6 +38,9 @@ class Students extends React.Component {
             <Link to={`/student/${student.id}`} className="btn custom-button">
               View Student
             </Link> 
+            <Link to={`/student/${student.id}/edit`} className="btn custom-button">
+              Edit Student
+            </Link> 
           </div>
         </div>
       </div>

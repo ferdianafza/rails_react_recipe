@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ToggleBox from "./ToggleBox";
+import Vehicles from "./Vehicles";
+import Alert from "./Alert";
 
 class Student extends React.Component {
   constructor(props) {
@@ -19,15 +22,17 @@ class Student extends React.Component {
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
   }
-   onChange(event) {
+
+  onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+
   onSubmit(event) {
       const {
-       match: {
+        match: {
         params: { id }
-       }
-     } = this.props;
+        }
+      } = this.props;
     event.preventDefault();
     const url = `/api/v1/student/${id}`;
     const { name, ingredients, instruction } = this.state;
@@ -56,7 +61,7 @@ class Student extends React.Component {
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => this.props.history.push(`/student/${response.id}`))
+      .then(response => this.props.history.push(`/students`))
       .catch(error => console.log(error.message));
   }
 
@@ -155,45 +160,7 @@ render() {
                   __html: `${studentInstruction}`
                 }}
               />
-              <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="recipeName">Student name</label>
-                <input
-                  type="text"
-                  name="name"
-                  id="recipeName"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="recipeIngredients">Ingredients</label>
-                <input
-                  type="text"
-                  name="ingredients"
-                  id="recipeIngredients"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
-                <small id="ingredientsHelp" className="form-text text-muted">
-                  Separate each ingredient with a comma.
-                </small>
-              </div>
-              <label htmlFor="instruction">Preparation Instructions</label>
-              <textarea
-                className="form-control"
-                id="instruction"
-                name="instruction"
-                rows="5"
-                required
-                onChange={this.onChange}
-              />
-              <button type="submit" className="btn custom-button mt-3">
-                Update Student
-              </button>
-            </form>
+              <Alert />
             </div>
             <div className="col-sm-12 col-lg-2">
               <button type="button" className="btn btn-danger" onClick={this.deleteStudent}>
