@@ -8,6 +8,7 @@ import NewRecipe from "../components/NewRecipe";
 import Students from "../components/students/Students";
 import Student from "../components/students/Student";
 import NewStudent from "../components/students/NewStudent";
+import EditStudent from "../components/students/EditStudent";
 
 
 export default (
@@ -20,6 +21,7 @@ export default (
 
   	  <Route path="/students" exact component={Students} />
   	  <Route path="/student/:id" exact component={Student} />
+      <Route path="/student/:id/edit" exact component={Student} />
       <Route path="/student" exact component={NewStudent} />
     </Switch>
   </Router>

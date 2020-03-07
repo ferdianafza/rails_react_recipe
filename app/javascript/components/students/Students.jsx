@@ -37,7 +37,7 @@ class Students extends React.Component {
             <h5 className="card-title">{student.name}</h5>
             <Link to={`/student/${student.id}`} className="btn custom-button">
               View Student
-            </Link>
+            </Link> 
           </div>
         </div>
       </div>

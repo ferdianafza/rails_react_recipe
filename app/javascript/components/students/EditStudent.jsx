@@ -1,63 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import UpdateStudent from "../components/UpdateStudent";
 
-class Student extends React.Component {
+class EditStudent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      student: { ingredients: "" }
-       };
+    this.state = { student: { ingredients: "" } };
 
     this.addHtmlEntities = this.addHtmlEntities.bind(this);
     this.deleteStudent = this.deleteStudent.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  stripHtmlEntities(str) {
-    return String(str)
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
-  }
-   onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-  onSubmit(event) {
-      const {
-       match: {
-        params: { id }
-       }
-     } = this.props;
-    event.preventDefault();
-    const url = `/api/v1/student/${id}`;
-    const { name, ingredients, instruction } = this.state;
-
-    if (name.length == 0 || ingredients.length == 0 || instruction.length == 0)
-      return;
-
-    const body = {
-      name,
-      ingredients,
-      instruction: instruction.replace(/\n/g, "<br> <br>")
-    };
-
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(response => this.props.history.push(`/student/${response.id}`))
-      .catch(error => console.log(error.message));
   }
 
 componentDidMount() {
@@ -155,52 +106,15 @@ render() {
                   __html: `${studentInstruction}`
                 }}
               />
-              <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="recipeName">Student name</label>
-                <input
-                  type="text"
-                  name="name"
-                  id="recipeName"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="recipeIngredients">Ingredients</label>
-                <input
-                  type="text"
-                  name="ingredients"
-                  id="recipeIngredients"
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
-                <small id="ingredientsHelp" className="form-text text-muted">
-                  Separate each ingredient with a comma.
-                </small>
-              </div>
-              <label htmlFor="instruction">Preparation Instructions</label>
-              <textarea
-                className="form-control"
-                id="instruction"
-                name="instruction"
-                rows="5"
-                required
-                onChange={this.onChange}
-              />
-              <button type="submit" className="btn custom-button mt-3">
-                Update Student
-              </button>
-            </form>
             </div>
             <div className="col-sm-12 col-lg-2">
               <button type="button" className="btn btn-danger" onClick={this.deleteStudent}>
                 Delete Student
               </button>
+              <button type="button" className="btn btn-danger" onClick={this.deleteStudent}>
+                Update Student
+              </button>
             </div>
-
           </div>
           <Link to="/students" className="btn btn-link">
             Back to students
@@ -211,4 +125,4 @@ render() {
   }
 }
 
-export default Student;
+export default EditStudent;

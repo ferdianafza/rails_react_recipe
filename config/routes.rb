@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       get 'students/index'
       post 'students/create'
       get '/student/show/:id', to: 'students#show'
+      get '/student/edit/:id', to: 'students#edit'
+      put '/student/:id', to: 'students#update'
       delete '/student/destroy/:id', to: 'students#destroy'
     end
   end

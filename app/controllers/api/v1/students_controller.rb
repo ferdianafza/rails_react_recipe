@@ -13,6 +13,14 @@ class Api::V1::StudentsController < ApplicationController
     end
   end
 
+  def edit
+    if student
+      render json: student
+    else
+      render json: student.errors
+    end
+  end
+
   def show
     if student
       render json: student
@@ -24,6 +32,11 @@ class Api::V1::StudentsController < ApplicationController
   def destroy
     student&.destroy
     render json: { message: 'Student deleted!' }
+  end
+
+  def update
+    student.update(student_params)
+    render json: student
   end
 
 

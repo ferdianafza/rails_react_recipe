@@ -65,11 +65,11 @@ class NewStudent extends React.Component {
         <div className="row">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
             <h1 className="font-weight-normal mb-5">
-              Add a new recipe to our awesome recipe collection.
+              Add a new student to our awesome student collection.
             </h1>
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
-                <label htmlFor="recipeName">Recipe name</label>
+                <label htmlFor="recipeName">Student name</label>
                 <input
                   type="text"
                   name="name"
